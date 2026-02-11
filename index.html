@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
+</head>
+<body class="dark-mode">
+    <div class="container">
+        <header class="header">
+            <button class="theme-palette-btn" id="themePaletteBtn">
+                <i class="fas fa-palette"></i>
+            </button>
+            <div class="header-title">
+                <h1>iPhone Generator</h1>
+            </div>
+            <div class="theme-toggle">
+                <span class="sun-icon"><i class="fas fa-sun"></i></span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="darkModeToggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="moon-icon"><i class="fas fa-moon"></i></span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="description">
+                <p>Generate Brat atau Iqc anda sekarang dengan style iPhone gratis tanpa biaya sepeserpun!.</p>
+            </section>
+
+            <section class="mode-selector">
+                <div class="mode-buttons">
+                    <button class="mode-btn active" id="bratBtn" data-mode="brat">Brat</button>
+                    <button class="mode-btn" id="iqcBtn" data-mode="iqc">Iqc</button>
+                </div>
+            </section>
+
+            <section class="input-section">
+                <div class="input-container">
+                    <textarea id="textInput" placeholder="Masukkan teks untuk gambar iPhone . . ." rows="1"></textarea>
+                    <div class="iqc-extra-inputs" id="iqcExtraInputs" style="display: none;">
+                        <div class="extra-input-group">
+                            <input type="time" id="jamInput" value="10:30">
+                        </div>
+                        <div class="extra-input-group">
+                            <div class="baterai-container">
+                                <div class="baterai-label">
+                                    <span>Baterai:</span>
+                                    <span id="bateraiValue">80%</span>
+                                </div>
+                                <input type="range" id="bateraiInput" min="0" max="100" value="80" class="baterai-slider">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="generate-section">
+                <button class="generate-btn" id="generateBtn">
+                    <span>Hasilkan</span>
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+            </section>
+
+            <section class="result-section">
+                <div class="result-container">
+                    <div class="result-box square" id="resultBox">
+                        <div class="initial-state" id="initialState">
+                            <i class="fa-solid fa-image"></i>
+                            <p>Hasil generate akan muncul di sini</p>
+                        </div>
+                        <div class="loading-state" id="loadingState">
+                            <div class="spinner"></div>
+                            <p>Memproses gambar . . .</p>
+                        </div>
+                        <img id="resultImage" alt="Hasil gambar iPhone" style="display: none;">
+                    </div>
+                </div>
+                <div class="download-section">
+                    <button class="download-btn" id="downloadBtn" disabled>
+                        <i class="fas fa-download"></i>
+                        <span>Unduh</span>
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <div class="color-palette-modal" id="colorPaletteModal">
+            <div class="modal-content">
+                <h2>Pilih Tema Warna</h2>
+                <div class="color-grid">
+                    <div class="color-option red" data-color="#ef4444"></div>
+                    <div class="color-option orange" data-color="#f97316"></div>
+                    <div class="color-option yellow" data-color="#eab308"></div>
+                    <div class="color-option green" data-color="#22c55e"></div>
+                    <div class="color-option blue active" data-color="#3b82f6"></div>
+                    <div class="color-option purple" data-color="#a855f7"></div>
+                </div>
+                <div class="modal-actions">
+                    <button class="cancel-btn" id="cancelBtn">Batal</button>
+                    <button class="apply-btn" id="applyBtn">Terapkan</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-modal" id="alertModal">
+            <div class="modal-content">
+                <h2><i class="fas fa-exclamation-triangle"></i> Peringatan</h2>
+                <p id="alertMessage"></p>
+                <div class="modal-actions">
+                    <button class="ok-btn" id="alertOkBtn">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
