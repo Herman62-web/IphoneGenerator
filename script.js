@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const darkModeToggle = document.getElementById('darkModeToggle');
     const themePaletteBtn = document.getElementById('themePaletteBtn');
     const colorPaletteModal = document.getElementById('colorPaletteModal');
     const cancelBtn = document.getElementById('cancelBtn');
@@ -22,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const alertModal = document.getElementById('alertModal');
     const alertOkBtn = document.getElementById('alertOkBtn');
     const alertMessage = document.getElementById('alertMessage');
+    const darkModeToggle = document.getElementById('darkModeToggle');
     
     let currentMode = 'brat';
     let currentColor = '#3b82f6';
@@ -239,18 +239,20 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.removeChild(link);
     }
     
-    darkModeToggle.addEventListener('change', function() {
-        if (this.checked) {
-            document.body.classList.add('dark-mode');
-            document.body.classList.remove('light-mode');
-        } else {
-            document.body.classList.add('light-mode');
+    darkModeToggle.addEventListener('click', function() {
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        if (isDarkMode) {
             document.body.classList.remove('dark-mode');
+            document.body.classList.add('light-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            localStorage.setItem('darkMode', 'false');
+        } else {
+            document.body.classList.remove('light-mode');
+            document.body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            localStorage.setItem('darkMode', 'true');
         }
-        
         applyThemeColor(currentColor);
-        
-        localStorage.setItem('darkMode', this.checked);
     });
     
     themePaletteBtn.addEventListener('click', function() {
@@ -319,9 +321,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     const savedDarkMode = localStorage.getItem('darkMode');
-    if (savedDarkMode !== null) {
-        darkModeToggle.checked = savedDarkMode === 'true';
-        darkModeToggle.dispatchEvent(new Event('change'));
+    if (savedDarkMode === 'false') {
+        document.body.classList.remove('dark-mode');
+        document.body.classList.add('light-mode');
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    } else {
+        document.body.classList.add('dark-mode');
+        document.body.classList.remove('light-mode');
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
     }
     
     const savedColor = localStorage.getItem('themeColor');
